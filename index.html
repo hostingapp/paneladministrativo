@@ -2,24 +2,12 @@
 <html lang="es">
 
 <head>
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <meta charset="UTF-8">
-
 
 <meta
 name="viewport"
 content="width=device-width, initial-scale=1.0">
-
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-<meta
-name="theme-color"
-content="#0f172a">
 
 <title>
 Radios Múltiples Admin
@@ -45,23 +33,13 @@ rel="stylesheet">
 
 <header>
 
-<div class="header-top">
+<h1>
+🎙 Radios Múltiples
+</h1>
 
-<img
-src="https://i.ibb.co/qY7V1cVg/4008656-splash.png"
-class="header-logo">
-
-<header>
-
-    <img src="https://i.ibb.co/qY7V1cVg/4008656-splash.png" alt="Logo">
-
-    <div class="header-text">
-
-        <h1>Radios Múltiples</h1>
-
-        <p>Panel Administrativo</p>
-
-    </div>
+<p>
+Panel Administrativo
+</p>
 
 </header>
 
@@ -114,14 +92,12 @@ placeholder="Buscar emisora...">
 
 </div>
 
-<!-- TAB PENDIENTES -->
+<!-- SECCIÓN PENDIENTES -->
 
-<div
-id="tabPendientes"
-class="tab-content active">
+<section>
 
 <h2 class="section-title">
-<i class="fas fa-clock"></i></i> Emisoras Pendientes
+⏳ Emisoras Pendientes
 </h2>
 
 <div
@@ -129,16 +105,14 @@ id="pendientesContainer"
 class="grid">
 </div>
 
-</div>
+</section>
 
-<!-- TAB APROBADAS -->
+<!-- SECCIÓN APROBADAS -->
 
-<div
-id="tabAprobadas"
-class="tab-content">
+<section style="margin-top:40px;">
 
 <h2 class="section-title">
-<i class="fas fa-check-circle"></i> Emisoras Aprobadas
+✅ Emisoras Aprobadas
 </h2>
 
 <div
@@ -146,52 +120,11 @@ id="aprobadasContainer"
 class="grid">
 </div>
 
-</div>
-
-<!-- TAB CONFIG -->
-
-<div
-id="tabConfig"
-class="tab-content">
-
-<h2 class="section-title">
-<i class="fas fa-cog"></i> Configuración
-</h2>
-
-<div class="config-box">
-
-<button
-class="config-btn"
-onclick="actualizarDatos()">
-
-🔄 Actualizar datos
-
-</button>
-
-<button
-class="config-btn"
-onclick="toggleTema()">
-
-🌙 Cambiar tema
-
-</button>
-
-<button
-class="config-btn"
-onclick="cerrarSesion()">
-
-🚪 Cerrar sesión
-
-</button>
-
-</div>
-
-</div>
+</section>
 
 </div>
 
 <script src="app.js"></script>
-
 
 
 <!-- MODAL EDITAR -->
@@ -348,135 +281,6 @@ onclick="cerrarSesion()">
 
 </div>
 
-<nav class="bottom-nav">
-
-<button
-class="nav-btn active"
-onclick="showTab('pendientes',this)">
-
-<i class="fas fa-clock"></i>
-
-
-<span>Pendientes</span>
-
-</button>
-
-<button
-class="nav-btn"
-onclick="showTab('aprobadas',this)">
-
-<i class="fas fa-check-circle"></i>
-
-<span>Aprobadas</span>
-
-</button>
-
-<button
-class="nav-btn"
-onclick="showTab('config',this)">
-
-<i class="fas fa-cog"></i>
-
-<span>Config.</span>
-
-</button>
-
-</nav>
-
-
-<div id="deleteModal" class="modal">
-
-  <div class="modal-content" style="max-width:450px;">
-
-    <div class="modal-header">
-
-      <h2>⚠️ Confirmar eliminación</h2>
-
-    </div>
-
-    <div class="modal-body">
-
-      <p>
-        ¿Seguro que deseas eliminar esta emisora?
-      </p>
-
-      <p style="color:#ef4444;margin-top:10px;">
-        Esta acción no se puede deshacer.
-      </p>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button
-      class="btn view"
-      onclick="cerrarDeleteModal()">
-
-        Cancelar
-
-      </button>
-
-      <button
-      class="btn delete"
-      onclick="confirmarEliminar()">
-
-        Eliminar
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div id="approveModal" class="modal">
-
-  <div class="modal-content" style="max-width:450px;">
-
-    <div class="modal-header">
-
-      <h2>✅ Confirmar publicación</h2>
-
-    </div>
-
-    <div class="modal-body">
-
-      <p>
-        ¿Deseas aprobar esta emisora?
-      </p>
-
-      <p style="color:#22c55e;margin-top:10px;">
-
-        Se publicará automáticamente en Blogger.
-
-      </p>
-
-    </div>
-
-    <div class="modal-footer">
-
-      <button
-      class="btn view"
-      onclick="cerrarApproveModal()">
-
-        Cancelar
-
-      </button>
-
-      <button
-      class="btn approve"
-      onclick="confirmarAprobacion()">
-
-        Aprobar
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
 </body>
 
 </html>
