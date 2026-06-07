@@ -2,8 +2,12 @@
 <html lang="es">
 
 <head>
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <meta charset="UTF-8">
+
 
 <meta
 name="viewport"
@@ -41,21 +45,21 @@ rel="stylesheet">
 
 <header>
 
-<h1 class="logo-title">
+<div class="header-top">
 
 <img
 src="https://i.ibb.co/qY7V1cVg/4008656-splash.png"
-alt="Logo Radios Múltiples"
 class="header-logo">
 
-<span>
-Radios Múltiples
-</span>
+<div class="header-text">
 
-</h1>
-<p>
-Panel Administrativo
-</p>
+<h1>Radios Múltiples</h1>
+
+<p>Panel Administrativo</p>
+
+</div>
+
+</div>
 
 </header>
 
@@ -115,7 +119,7 @@ id="tabPendientes"
 class="tab-content active">
 
 <h2 class="section-title">
-⏳ Emisoras Pendientes
+<i class="fas fa-clock"></i></i> Emisoras Pendientes
 </h2>
 
 <div
@@ -132,7 +136,7 @@ id="tabAprobadas"
 class="tab-content">
 
 <h2 class="section-title">
-✅ Emisoras Aprobadas
+<i class="fas fa-check-circle"></i> Emisoras Aprobadas
 </h2>
 
 <div
@@ -149,7 +153,7 @@ id="tabConfig"
 class="tab-content">
 
 <h2 class="section-title">
-⚙️ Configuración
+<i class="fas fa-cog"></i> Configuración
 </h2>
 
 <div class="config-box">
@@ -348,7 +352,8 @@ onclick="cerrarSesion()">
 class="nav-btn active"
 onclick="showTab('pendientes',this)">
 
-<div>⏳</div>
+<i class="fas fa-clock"></i>
+
 
 <span>Pendientes</span>
 
@@ -358,7 +363,7 @@ onclick="showTab('pendientes',this)">
 class="nav-btn"
 onclick="showTab('aprobadas',this)">
 
-<div>✅</div>
+<i class="fas fa-check-circle"></i>
 
 <span>Aprobadas</span>
 
@@ -368,7 +373,7 @@ onclick="showTab('aprobadas',this)">
 class="nav-btn"
 onclick="showTab('config',this)">
 
-<div>⚙️</div>
+<i class="fas fa-cog"></i>
 
 <span>Config.</span>
 
