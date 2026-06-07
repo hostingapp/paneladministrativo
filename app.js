@@ -235,49 +235,36 @@ function crearCard(
 /****************************************
  * APROBAR
  ****************************************/
-/****************************************
- * APROBAR
- ****************************************/
+async function aprobar(
+  fila
+) {
 
-async function aprobar(fila){
-
-  const confirmar = confirm(
-    "✅ ¿Deseas aprobar y publicar esta emisora?\n\nSe creará automáticamente la entrada en Blogger."
-  );
-
-  if(!confirmar){
+  if (
+    !confirm(
+      "¿Publicar esta emisora?"
+    )
+  ) {
     return;
   }
 
-  try{
+  try {
 
     await fetch(
       API_URL,
       {
-        method:"POST",
-        body:JSON.stringify({
-
-          action:"aprobar",
-
+        method: "POST",
+        body: JSON.stringify({
+          action: "aprobar",
           fila
-
         })
       }
     );
 
-    alert(
-      "🎉 Emisora publicada correctamente"
-    );
+    await loadRadios();
 
-    loadRadios();
-
-  }catch(error){
+  } catch (error) {
 
     console.error(error);
-
-    alert(
-      "❌ Error al publicar la emisora"
-    );
 
   }
 
@@ -285,36 +272,34 @@ async function aprobar(fila){
 /****************************************
  * ELIMINAR
  ****************************************/
-async function eliminarRadio(fila){
+async function eliminarRadio(
+  fila
+) {
 
-  const confirmar = confirm(
-    "⚠️ ¿Seguro que deseas eliminar esta emisora?\n\nEsta acción no se puede deshacer."
-  );
-
-  if(!confirmar){
+  if (
+    !confirm(
+      "¿Eliminar esta emisora?"
+    )
+  ) {
     return;
   }
 
-  try{
+  try {
 
     await fetch(
       API_URL,
       {
-        method:"POST",
-        body:JSON.stringify({
-          action:"eliminar",
+        method: "POST",
+        body: JSON.stringify({
+          action: "eliminar",
           fila
         })
       }
     );
 
-    alert("✅ Emisora eliminada correctamente");
+    await loadRadios();
 
-    loadRadios();
-
-  }catch(error){
-
-    alert("❌ Error al eliminar");
+  } catch (error) {
 
     console.error(error);
 
@@ -462,223 +447,3 @@ document.addEventListener(
 
   }
 );
-function showTab(
-  tab,
-  btn
-){
-
-  document
-  .querySelectorAll(
-    ".tab-content"
-  )
-  .forEach(el => {
-
-    el.classList.remove(
-      "active"
-    );
-
-  });
-
-  document
-  .querySelectorAll(
-    ".nav-btn"
-  )
-  .forEach(el => {
-
-    el.classList.remove(
-      "active"
-    );
-
-  });
-
-  const tabs = {
-
-    pendientes:
-    "tabPendientes",
-
-    aprobadas:
-    "tabAprobadas",
-
-    config:
-    "tabConfig"
-
-  };
-
-  const destino =
-  document.getElementById(
-    tabs[tab]
-  );
-
-  if(destino){
-
-    destino.classList.add(
-      "active"
-    );
-
-  }
-
-  if(btn){
-
-    btn.classList.add(
-      "active"
-    );
-
-  }
-
-}
-/****************************************
- * INICIAR TAB POR DEFECTO
- ****************************************/
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    const primeraTab =
-      document.getElementById(
-        "tabPendientes"
-      );
-
-    if(primeraTab){
-
-      primeraTab.classList.add(
-        "active"
-      );
-
-    }
-
-    const primerBoton =
-      document.querySelector(
-        ".nav-btn"
-      );
-
-    if(primerBoton){
-
-      primerBoton.classList.add(
-        "active"
-      );
-
-    }
-
-  }
-);
-function actualizarDatos(){
-
-  loadRadios();
-
-  alert(
-    "Datos actualizados correctamente."
-  );
-
-}
-function toggleTema(){
-
-  document.body.classList.toggle(
-    "light-theme"
-  );
-
-}
-function cerrarSesion(){
-
-  localStorage.removeItem(
-    "adminLogged"
-  );
-
-  window.location.href =
-  "login.html";
-
-}
-let filaEliminar = null;
-
-function eliminarRadio(fila){
-
-  filaEliminar = fila;
-
-  document
-  .getElementById("deleteModal")
-  .style.display = "flex";
-
-}
-
-function cerrarDeleteModal(){
-
-  document
-  .getElementById("deleteModal")
-  .style.display = "none";
-
-}
-
-async function confirmarEliminar(){
-
-  try{
-
-    await fetch(
-      API_URL,
-      {
-        method:"POST",
-        body:JSON.stringify({
-          action:"eliminar",
-          fila:filaEliminar
-        })
-      }
-    );
-
-    cerrarDeleteModal();
-
-    loadRadios();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-}
-let filaAprobar = null;
-
-function aprobar(fila){
-
-  filaAprobar = fila;
-
-  document
-  .getElementById("approveModal")
-  .style.display = "flex";
-
-}
-
-function cerrarApproveModal(){
-
-  document
-  .getElementById("approveModal")
-  .style.display = "none";
-
-}
-
-async function confirmarAprobacion(){
-
-  try{
-
-    await fetch(
-      API_URL,
-      {
-        method:"POST",
-        body:JSON.stringify({
-
-          action:"aprobar",
-
-          fila:filaAprobar
-
-        })
-      }
-    );
-
-    cerrarApproveModal();
-
-    loadRadios();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-}
