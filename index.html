@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<meta
+name="theme-color"
+content="#0f172a">
+
+<title>
+Radios Múltiples Admin
+</title>
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1 class="logo-title">
+
+<img
+src="https://i.ibb.co/qY7V1cVg/4008656-splash.png"
+alt="Logo Radios Múltiples"
+class="header-logo">
+
+<span>
+Radios Múltiples
+</span>
+
+</h1>
+<p>
+Panel Administrativo
+</p>
+
+</header>
+
+<div class="stats">
+
+<div class="card-stat">
+
+<h2 id="pendientes">
+0
+</h2>
+
+<span>
+Pendientes
+</span>
+
+</div>
+
+<div class="card-stat">
+
+<h2 id="publicadas">
+0
+</h2>
+
+<span>
+Publicadas
+</span>
+
+</div>
+
+<div class="card-stat">
+
+<h2 id="total">
+0
+</h2>
+
+<span>
+Total
+</span>
+
+</div>
+
+</div>
+
+<div class="toolbar">
+
+<input
+type="text"
+id="search"
+placeholder="Buscar emisora...">
+
+</div>
+
+<!-- TAB PENDIENTES -->
+
+<div
+id="tabPendientes"
+class="tab-content active">
+
+<h2 class="section-title">
+⏳ Emisoras Pendientes
+</h2>
+
+<div
+id="pendientesContainer"
+class="grid">
+</div>
+
+</div>
+
+<!-- TAB APROBADAS -->
+
+<div
+id="tabAprobadas"
+class="tab-content">
+
+<h2 class="section-title">
+✅ Emisoras Aprobadas
+</h2>
+
+<div
+id="aprobadasContainer"
+class="grid">
+</div>
+
+</div>
+
+<!-- TAB CONFIG -->
+
+<div
+id="tabConfig"
+class="tab-content">
+
+<h2 class="section-title">
+⚙️ Configuración
+</h2>
+
+<div class="config-box">
+
+<button
+class="config-btn"
+onclick="actualizarDatos()">
+
+🔄 Actualizar datos
+
+</button>
+
+<button
+class="config-btn"
+onclick="toggleTema()">
+
+🌙 Cambiar tema
+
+</button>
+
+<button
+class="config-btn"
+onclick="cerrarSesion()">
+
+🚪 Cerrar sesión
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+
+
+<!-- MODAL EDITAR -->
+
+<div id="editModal" class="modal">
+
+  <div class="modal-content">
+
+    <div class="modal-header">
+
+      <h2>
+        ✏️ Editar Emisora
+      </h2>
+
+      <button
+      class="close-modal"
+      onclick="cerrarModal()">
+
+        ×
+
+      </button>
+
+    </div>
+
+    <div class="modal-body">
+
+      <input
+      type="hidden"
+      id="editFila">
+
+      <div class="form-group">
+
+        <label>Nombre</label>
+
+        <input
+        type="text"
+        id="editNombre">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Ciudad</label>
+
+        <input
+        type="text"
+        id="editCiudad">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>País</label>
+
+        <input
+        type="text"
+        id="editPais">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Stream</label>
+
+        <input
+        type="text"
+        id="editStream">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Logo</label>
+
+        <input
+        type="text"
+        id="editLogo">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Web</label>
+
+        <input
+        type="text"
+        id="editWeb">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>WhatsApp</label>
+
+        <input
+        type="text"
+        id="editWhatsapp">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Facebook</label>
+
+        <input
+        type="text"
+        id="editFacebook">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Instagram</label>
+
+        <input
+        type="text"
+        id="editInstagram">
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Descripción</label>
+
+        <textarea
+        id="editDescripcion"
+        rows="5"></textarea>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button
+      class="btn delete"
+      onclick="cerrarModal()">
+
+        Cancelar
+
+      </button>
+
+      <button
+      class="btn approve"
+      onclick="guardarEdicion()">
+
+        Guardar Cambios
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<button
+class="nav-btn active"
+onclick="showTab('pendientes',this)">
+
+<div>⏳</div>
+
+<span>Pendientes</span>
+
+</button>
+
+<button
+class="nav-btn"
+onclick="showTab('aprobadas',this)">
+
+<div>✅</div>
+
+<span>Aprobadas</span>
+
+</button>
+
+<button
+class="nav-btn"
+onclick="showTab('config',this)">
+
+<div>⚙️</div>
+
+<span>Config.</span>
+
+</button>
+
+</nav>
+
+
+<div id="deleteModal" class="modal">
+
+  <div class="modal-content" style="max-width:450px;">
+
+    <div class="modal-header">
+
+      <h2>⚠️ Confirmar eliminación</h2>
+
+    </div>
+
+    <div class="modal-body">
+
+      <p>
+        ¿Seguro que deseas eliminar esta emisora?
+      </p>
+
+      <p style="color:#ef4444;margin-top:10px;">
+        Esta acción no se puede deshacer.
+      </p>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button
+      class="btn view"
+      onclick="cerrarDeleteModal()">
+
+        Cancelar
+
+      </button>
+
+      <button
+      class="btn delete"
+      onclick="confirmarEliminar()">
+
+        Eliminar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div id="approveModal" class="modal">
+
+  <div class="modal-content" style="max-width:450px;">
+
+    <div class="modal-header">
+
+      <h2>✅ Confirmar publicación</h2>
+
+    </div>
+
+    <div class="modal-body">
+
+      <p>
+        ¿Deseas aprobar esta emisora?
+      </p>
+
+      <p style="color:#22c55e;margin-top:10px;">
+
+        Se publicará automáticamente en Blogger.
+
+      </p>
+
+    </div>
+
+    <div class="modal-footer">
+
+      <button
+      class="btn view"
+      onclick="cerrarApproveModal()">
+
+        Cancelar
+
+      </button>
+
+      <button
+      class="btn approve"
+      onclick="confirmarAprobacion()">
+
+        Aprobar
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+</body>
+
+</html>
