@@ -1,7 +1,7 @@
 const API_URL =
 "https://script.google.com/macros/s/AKfycbyf1xUufckqtI02C2KKPa4rwaybXdndZ7aidClVIUOfL4dgjDZJWWlJH6y3S2EyoxkF-w/exec";
 
-let radios = []; 
+let radios = [];
 
 /****************************************
  * CARGAR RADIOS
