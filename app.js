@@ -1,5 +1,5 @@
 const API_URL =
-"https://script.google.com/macros/s/AKfycbwZb_nGksYQnydXGpRIvgZnHUH566M6hMNDNLRH23_LJFQ8MQu9iAnlDi1orbvthvPcew/exec";
+"https://script.google.com/macros/s/AKfycbyf1xUufckqtI02C2KKPa4rwaybXdndZ7aidClVIUOfL4dgjDZJWWlJH6y3S2EyoxkF-w/exec";
 
 let radios = [];
 
@@ -112,19 +112,48 @@ function renderCards() {
     }
   );
 
-  aprobadas.forEach(
-    radio => {
+  let numero = 1;
 
-      aprobadasContainer.appendChild(
-        crearCard(
-          radio,
-          true
-        )
-      );
+aprobadas.forEach(radio => {
 
-    }
-  );
+  const item = document.createElement("div");
 
+  item.className = "radio-aprobada";
+
+  item.innerHTML = `
+    <div class="radio-numero">${numero}</div>
+
+    <img
+      class="radio-mini-logo"
+      src="${radio.logo || 'https://via.placeholder.com/50'}"
+      alt="${radio.nombre || ''}"
+      onerror="this.src='https://via.placeholder.com/50'">
+
+    <div class="radio-datos">
+      <strong>${radio.nombre || 'Sin nombre'}</strong>
+    </div>
+
+    <a
+      href="${radio.url || '#'}"
+      target="_blank"
+      class="btn-mini view">
+      Ver Blog
+    </a>
+
+    <button
+      class="btn-mini edit"
+      onclick="editar(${radio.fila})">
+      Editar
+    </button>
+  `;
+
+  aprobadasContainer.appendChild(item);
+
+  numero++;
+
+});
+
+   
 }
 /****************************************
  * CREAR TARJETA
@@ -447,3 +476,138 @@ document.addEventListener(
 
   }
 );
+async function guardarEdicion() {
+
+  const fila =
+  document.getElementById("editFila").value;
+
+  const radio = {
+
+    nombre:
+    document.getElementById("editNombre").value,
+
+    ciudad:
+    document.getElementById("editCiudad").value,
+
+    pais:
+    document.getElementById("editPais").value,
+
+    stream:
+    document.getElementById("editStream").value,
+
+    logo:
+    document.getElementById("editLogo").value,
+
+    web:
+    document.getElementById("editWeb").value,
+
+    whatsapp:
+    document.getElementById("editWhatsapp").value,
+
+    facebook:
+    document.getElementById("editFacebook").value,
+
+    instagram:
+    document.getElementById("editInstagram").value,
+
+    descripcion:
+    document.getElementById("editDescripcion").value
+
+  };
+
+  try {
+
+    const response =
+    await fetch(API_URL, {
+
+      method: "POST",
+
+      body: JSON.stringify({
+
+        action: "editar",
+
+        fila,
+
+        radio
+
+      })
+
+    });
+
+    const result =
+    await response.json();
+
+    if(result.success){
+
+      alert(
+        "✅ Emisora actualizada"
+      );
+
+      cerrarModal();
+
+      loadRadios();
+
+    } else {
+
+      alert(
+        "❌ " + result.error
+      );
+
+    }
+
+  } catch(error){
+
+    console.error(error);
+
+    alert(
+      "Error al guardar"
+    );
+
+  }
+
+}
+function showTab(tab, btn){
+
+document
+.querySelectorAll(".tab-content")
+.forEach(el => {
+
+el.classList.remove("active");
+
+});
+
+document
+.querySelectorAll(".nav-btn")
+.forEach(el => {
+
+el.classList.remove("active");
+
+});
+
+if(tab === "pendientes"){
+
+document
+.getElementById("tabPendientes")
+.classList.add("active");
+
+}
+
+if(tab === "aprobadas"){
+
+document
+.getElementById("tabAprobadas")
+.classList.add("active");
+
+}
+
+if(tab === "config"){
+
+document
+.getElementById("tabConfig")
+.classList.add("active");
+
+}
+
+btn.classList.add("active");
+
+}
