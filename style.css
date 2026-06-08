@@ -7,9 +7,9 @@ box-sizing:border-box;
 body{
 font-family:Poppins,sans-serif;
 background:#0f172a;
-color:#fff; 
+color:#fff;
 min-height:100vh;
-} 
+}
 
 .container{
 max-width:1400px;
@@ -660,4 +660,103 @@ cursor:pointer;
 
 .edit{
   background:#f59e0b;
+}
+
+/* =================================
+   RESPONSIVE CELULARES
+================================= */
+
+@media (max-width: 768px){
+
+  .container{
+    padding:15px;
+  }
+
+  header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+  }
+
+  header img{
+    width:70px;
+    height:70px;
+  }
+
+  header h1{
+    font-size:28px;
+    margin:0;
+  }
+
+  header p{
+    font-size:15px;
+  }
+
+  .stats{
+    grid-template-columns:
+    repeat(3,1fr);
+    gap:10px;
+  }
+
+  .card-stat{
+    padding:15px 10px;
+    border-radius:15px;
+  }
+
+  .card-stat h2{
+    font-size:32px;
+  }
+
+  .card-stat p{
+    font-size:14px;
+  }
+
+  .toolbar input{
+    padding:12px;
+    font-size:14px;
+  }
+
+  .section-title{
+    font-size:20px;
+    padding:12px 15px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  .card img{
+    height:180px;
+  }
+
+}
+
+.logo-admin{
+  width:90px;
+  height:90px;
+  border-radius:20px;
+  object-fit:cover;
+}
+
+.bottom-nav{
+
+  height:65px;
+
+  padding-bottom:
+  env(safe-area-inset-bottom);
+
+}
+
+.nav-btn{
+
+  font-size:12px;
+
+}
+
+.nav-btn div{
+
+  font-size:22px;
+
 }
