@@ -34,7 +34,7 @@ rel="stylesheet">
 <header>
 
 <h1>
-🎙 Radios Múltiples
+Radios Múltiples
 </h1>
 
 <p>
@@ -92,32 +92,55 @@ placeholder="Buscar emisora...">
 
 </div>
 
-<!-- SECCIÓN PENDIENTES -->
+<div class="container">
 
-<section>
+    <!-- PENDIENTES -->
+    <div id="tabPendientes" class="tab-content active">
 
-<h2 class="section-title">
-⏳ Emisoras Pendientes
-</h2>
+        <h2 class="section-title">
+            ⏳ Emisoras Pendientes
+        </h2>
 
-<div
-id="pendientesContainer"
-class="grid">
-</div>
+        <div id="pendientesContainer" class="grid"></div>
 
-</section>
+    </div>
 
-<!-- SECCIÓN APROBADAS -->
+    <!-- APROBADAS -->
+    <div id="tabAprobadas" class="tab-content">
 
-<section style="margin-top:40px;">
+        <h2 class="section-title">
+            ✅ Emisoras Aprobadas
+        </h2>
 
-<h2 class="section-title">
-✅ Emisoras Aprobadas
-</h2>
+        <div id="aprobadasContainer" class="grid"></div>
 
-<div
-id="aprobadasContainer"
-class="grid">
+    </div>
+
+    <!-- CONFIG -->
+    <div id="tabConfig" class="tab-content">
+
+        <h2 class="section-title">
+            ⚙️ Configuración
+        </h2>
+
+        <div class="config-box">
+
+            <button class="config-btn" onclick="loadRadios()">
+                🔄 Actualizar Datos
+            </button>
+
+            <button class="config-btn">
+                🌙 Tema Oscuro
+            </button>
+
+            <button class="config-btn">
+                🚪 Cerrar Sesión
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
 </section>
@@ -280,6 +303,37 @@ class="grid">
   </div>
 
 </div>
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-btn active"
+        onclick="showTab('pendientes',this)">
+
+        <span>⏳</span>
+        <small>Pendientes</small>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="showTab('aprobadas',this)">
+
+        <span>✅</span>
+        <small>Aprobadas</small>
+
+    </button>
+
+    <button
+        class="nav-btn"
+        onclick="showTab('config',this)">
+
+        <span>⚙️</span>
+        <small>Config.</small>
+
+    </button>
+
+</nav>
 
 </body>
 
